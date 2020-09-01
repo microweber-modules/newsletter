@@ -36,7 +36,7 @@ $campaigns = newsletter_get_campaigns();
                         <td><?php print $campaign['subject']; ?></td>
                         <td><?php print $campaign['from_name']; ?></td>
                         <!--
-                            <td><?php // print $campaign['from_email'];     ?></td>-->
+                            <td><?php // print $campaign['from_email'];      ?></td>-->
                         <td><?php print $campaign['created_at']; ?></td>
                         <td><?php print $campaign['list_name']; ?></td>
                         <td>
@@ -47,9 +47,9 @@ $campaigns = newsletter_get_campaigns();
                             <?php endif; ?>
                         </td>
                         <td class="text-center">
-                            <button class="btn btn-primary btn-sm" onclick="start_campaign('<?php print $campaign['id']; ?>')"><?php _e('Start'); ?></button>
                             <button class="btn btn-outline-primary btn-sm" onclick="edit_campaign('<?php print $campaign['id']; ?>')"><?php _e('Edit'); ?></button>
                             <a class="btn btn-link btn-sm text-danger" href="javascript:;" onclick="delete_campaign('<?php print $campaign['id']; ?>')"><i class="mdi mdi-trash-can-outline"></i></a>
+                            <button class="btn btn-success btn-sm" onclick="start_campaign('<?php print $campaign['id']; ?>')"><?php _e('Start'); ?></button>
                         </td>
                     </tr>
                 <?php endforeach; ?>

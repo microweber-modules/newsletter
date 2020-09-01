@@ -113,7 +113,7 @@
 
     <div class="form-group">
         <label class="control-label"><?php _e('Template design'); ?></label>
-        <small class="text-muted d-flex justify-content-between align-items-center mb-2"><span>Variables: {first_name} , {Last_name} , {email} , {unsubscribe} {site_url}</span> <button onclick="edit_iframe_template($('.js-edit-template-id').val())" type="button" class="btn btn-outline-primary btn-sm"><?php _e('Template Generator'); ?></button></small>
+        <small class="text-muted d-flex justify-content-between align-items-center mb-2"><span>Variables: {first_name} , {Last_name} , {email} , {unsubscribe} {site_url}</span> <button onclick="edit_iframe_template($('.js-edit-template-id').val())" type="button" class="btn btn-outline-primary"><?php _e('Template Generator'); ?></button></small>
 
         <textarea id="js-editor-template" name="text" class="js-edit-template-text" style="border:3px solid #cfcfcf; width:100%;height:500px;margin-top:5px;"></textarea>
 

@@ -5,7 +5,8 @@ if (isset($params['id'])) {
     $sender = newsletter_get_sender($params);
 }
 ?>
-
+<script>mw.lib.require('mwui');</script>
+<script>mw.lib.require('mwui_init');</script>
 <style>
     .js-danger-text {
         padding-top: 5px;
@@ -98,10 +99,6 @@ if (isset($params['id'])) {
     }
 </script>
 
-<script>mw.lib.require('mwui');</script>
-<script>mw.lib.require('mwui_init');</script>
-
-
 <form class="js-edit-sender-form">
 
     <div class="form-group">
@@ -135,7 +132,7 @@ if (isset($params['id'])) {
     <div class="form-group">
         <label class="control-label"><?php _e('Send email function'); ?></label> 
         <small class="text-muted d-block mb-2">Choose a method to send the emails</small>
-        <select class="selectpicker js-select-account-type" name="account_type" data-width="100%">
+        <select class="selectpicker-x form-control js-select-account-type" name="account_type" data-width="100%">
             <option value="php_mail">PHP Mail</option>
             <option value="smtp">SMTP Server</option>
             <option value="mailchimp">Mailchimp</option>
@@ -145,7 +142,7 @@ if (isset($params['id'])) {
             <option value="sparkpost">Sparkpost</option>
         </select>
     </div>
-
+<br />
     <script>
         $(document).ready(function () {
 
@@ -281,29 +278,20 @@ if (isset($params['id'])) {
         });
     </script>
 
-    <table class="mw-ui-box mw-ui-box-content js-sender-test-email-wrapper" style="display:none;background: whitesmoke  none repeat scroll 0% 0%;" width=" 100%" border="0">
-        <tbody>
-            <tr>
-                <td>
-                    <label class="control-label">
-                        Send test email to							
-                    </label>
-                    <input name="to_email" class="mw_option_field mw-options-form-binded form-control js-sender-test-email-to" type="text" option-group="email">
-                    <br /><br />
-                    <span class="mw-ui-btn mw-ui-btn-green js-sender-send-test-email">
-                        Send test email							
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <hr />
-                    <pre class="js-email-send-test-output"></pre>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="js-sender-test-email-wrapper" style="display:none;background: whitesmoke  none repeat scroll 0% 0%;">
+        <div class="form-group">
+            <label class="control-label">Send test email to							</label>
+            <input name="to_email" class="mw_option_field mw-options-form-binded form-control js-sender-test-email-to" type="text" option-group="email">
+        </div>
+
+        <button class="btn btn-outline-success js-sender-send-test-email">Send test email</button>
+
+        <hr clas="thin"/>
+        
+        <pre class="js-email-send-test-output"></pre>
+    </div>
     <br />
+    
     <button type="button" class="btn btn-outline-primary btn-sm js-sender-test-method"><?php _e('Test Method'); ?></button>	
 
     <div class="d-flex justify-content-between">
