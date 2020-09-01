@@ -17,9 +17,6 @@ $senders = newsletter_get_senders($senders_params);
 ?>
 
 <style>
-    .mw-ui-field-full-width {
-        width:100%;
-    }
     .js-danger-text {
         padding-top: 5px;
         color: #c21f1f;
@@ -113,125 +110,116 @@ $senders = newsletter_get_senders($senders_params);
         return ok;
     }
 </script>
+<script>mw.lib.require('mwui');</script>
+<script>mw.lib.require('mwui_init');</script>
 
 <form class="js-edit-list-form">
-
-    <div class="mw-ui-field-holder">
-        <label class="mw-ui-label"><?php _e('Name'); ?></label> 
-        <input name="name" value="<?php echo $list['name']; ?>" type="text" class="mw-ui-field mw-ui-field-full-width js-validation" />
+    <div class="form-group">
+        <label class="control-label"><?php _e('List name'); ?></label> 
+        <small class="text-muted d-block mb-2">Enter the name of the list</small>
+        <input name="name" value="<?php if (isset($list['name'])): ?><?php echo $list['name']; ?><?php endif; ?>" type="text" class="form-control js-validation" />
         <div class="js-field-message"></div>
     </div>
 
     <?php if (empty($templates)): ?>
-        <b style="color:#b93636;">First you need to create templates.</b>
+        <div style="color:#b93636;">First you need to create templates.</div>
     <?php endif; ?>
 
     <?php if (!empty($templates)): ?>
-        <table class="js-template-select-table">
-            <tr>
-                <td style="width:50%;">
-                    <label class="mw-ui-label"><?php _e('Success Email Template'); ?></label> 
-                </td>
-                <td style="width:50%;">
-                    <select name="success_email_template_id" class="mw-ui-field mw-ui-field-full-width">
-                        <?php foreach ($templates as $template) : ?>
-                            <option <?php if ($list['success_email_template_id'] == $template['id']): ?>selected="selected"<?php endif; ?> value="<?php echo $template['id']; ?>"><?php echo $template['title']; ?></option>
+        <div class="js-template-select-table">
+            <div class="form-group">
+                <label class="control-label"><?php _e('Success E-mail Template'); ?></label> 
+                <small class="text-muted d-block mb-2">Select from your e-mail templates or <a href="javascript:;">create a new one</a></small>
+
+                <select name="success_email_template_id" class="selectpicker" data-width="100%">
+                    <?php foreach ($templates as $template) : ?>
+                        <option <?php if (isset($list['success_email_template_id']) AND $list['success_email_template_id'] == $template['id']): ?>selected="selected"<?php endif; ?> value="<?php echo $template['id']; ?>"><?php echo $template['title']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <div class="js-field-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label"><?php _e('Success E-mail Sender'); ?></label>
+                <small class="text-muted d-block mb-2">Select from your e-mail templates or <a href="javascript:;">create a new one</a></small>
+
+                <?php if (!empty($senders) and is_array($senders)): ?>
+                    <select name="success_sender_account_id" class="selectpicker" data-width="100%">
+                        <?php foreach ($senders as $sender) : ?>
+                            <option <?php if (isset($list['success_sender_account_id']) AND $list['success_sender_account_id'] == $sender['id']): ?>selected="selected"<?php endif; ?> value="<?php echo $sender['id']; ?>"><?php echo $sender['name']; ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <div class="js-field-message"></div>
-                </td>
-            </tr>
+                <?php else: ?>
+                    <div style="color:#b93636;">First you need to add senders.</div>
+                <?php endif; ?>
+                <div class="js-field-message"></div>
+            </div>
 
-            <tr>
-                <td>
-                    <label class="mw-ui-label"><?php _e('Success Email Sender'); ?></label> 
-                </td>
-                <td>
-                    <?php if (!empty($senders)): ?>
-                        <select name="success_sender_account_id" class="mw-ui-field mw-ui-field-full-width">
-                            <?php foreach ($senders as $sender) : ?>
-                                <option <?php if ($list['success_sender_account_id'] == $sender['id']): ?>selected="selected"<?php endif; ?> value="<?php echo $sender['id']; ?>"><?php echo $sender['name']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    <?php else: ?>
-                        <b style="color:#b93636;">First you need to add senders.</b>
-                    <?php endif; ?>
-                    <div class="js-field-message"></div>
-                </td>
-            </tr>
+            <div class="form-group">
+                <label class="control-label"><?php _e('Unsubscription E-mail Template'); ?></label>
+                <small class="text-muted d-block mb-2">Select from your e-mail templates or <a href="javascript:;">create a new one</a></small>
 
-            <tr>
-                <td>
-                    <label class="mw-ui-label"><?php _e('Unsubscription Email Template'); ?></label> 
-                </td>
-                <td>
-                    <select name="unsubscription_email_template_id" class="mw-ui-field mw-ui-field-full-width">
-                        <?php foreach ($templates as $template) : ?>
-                            <option <?php if ($list['unsubscription_email_template_id'] == $template['id']): ?>selected="selected"<?php endif; ?> value="<?php echo $template['id']; ?>"><?php echo $template['title']; ?></option>
+                <select name="unsubscription_email_template_id" class="selectpicker" data-width="100%">
+                    <?php foreach ($templates as $template) : ?>
+                        <option <?php if (isset($list['unsubscription_email_template_id']) AND $list['unsubscription_email_template_id'] == $template['id']): ?>selected="selected"<?php endif; ?> value="<?php echo $template['id']; ?>"><?php echo $template['title']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <div class="js-field-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label"><?php _e('Unsubscription E-mail Sender'); ?></label>
+                <small class="text-muted d-block mb-2">Select from your e-mail templates or <a href="javascript:;">create a new one</a></small>
+
+                <?php if (!empty($senders)): ?>
+                    <select name="unsubscription_sender_account_id" class="selectpicker" data-width="100%">
+                        <?php foreach ($senders as $sender) : ?>
+                            <option <?php if (isset($list['unsubscription_sender_account_id']) AND $list['unsubscription_sender_account_id'] == $sender['id']): ?>selected="selected"<?php endif; ?> value="<?php echo $sender['id']; ?>"><?php echo $sender['name']; ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <div class="js-field-message"></div>
-                </td>
-            </tr>
+                <?php else: ?>
+                    <div style="color:#b93636;">First you need to add senders.</div>
+                <?php endif; ?>
+                <div class="js-field-message"></div>
+            </div>
 
-            <tr>
-                <td>
-                    <label class="mw-ui-label"><?php _e('Unsubscription Email Sender'); ?></label> 
-                </td>
-                <td>
-                    <?php if (!empty($senders)): ?>
-                        <select name="unsubscription_sender_account_id" class="mw-ui-field mw-ui-field-full-width">
-                            <?php foreach ($senders as $sender) : ?>
-                                <option <?php if ($list['unsubscription_sender_account_id'] == $sender['id']): ?>selected="selected"<?php endif; ?> value="<?php echo $sender['id']; ?>"><?php echo $sender['name']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    <?php else: ?>
-                        <b style="color:#b93636;">First you need to add senders.</b>
-                    <?php endif; ?>
-                    <div class="js-field-message"></div>
-                </td>
-            </tr>
+            <div class="form-group">
+                <label class="control-label"><?php _e('Confirmation E-mail Template'); ?></label>
+                <small class="text-muted d-block mb-2">Select from your e-mail templates or <a href="javascript:;">create a new one</a></small>
 
-            <tr>
-                <td>
-                    <label class="mw-ui-label"><?php _e('Confirmation Email Template'); ?></label>
-                </td>
-                <td>
-                    <select name="confirmation_email_template_id" class="mw-ui-field mw-ui-field-full-width">
-                        <?php foreach ($templates as $template) : ?>
-                            <option <?php if ($list['confirmation_email_template_id'] == $template['id']): ?>selected="selected"<?php endif; ?> value="<?php echo $template['id']; ?>"><?php echo $template['title']; ?></option>
+                <select name="confirmation_email_template_id" class="selectpicker" data-width="100%">
+                    <?php foreach ($templates as $template) : ?>
+                        <option <?php if (isset($list['confirmation_email_template_id']) AND $list['confirmation_email_template_id'] == $template['id']): ?>selected="selected"<?php endif; ?> value="<?php echo $template['id']; ?>"><?php echo $template['title']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <div class="js-field-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label"><?php _e('Confirmation E-mail Sender'); ?></label>
+                <small class="text-muted d-block mb-2">Select from your e-mail templates or <a href="javascript:;">create a new one</a></small>
+
+                <?php if (!empty($senders)): ?>  
+                    <select name="confirmation_sender_account_id" class="selectpicker" data-width="100%">
+                        <?php foreach ($senders as $sender) : ?>
+                            <option <?php if (isset($list['confirmation_sender_account_id']) AND $list['confirmation_sender_account_id'] == $sender['id']): ?>selected="selected"<?php endif; ?> value="<?php echo $sender['id']; ?>"><?php echo $sender['name']; ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <div class="js-field-message"></div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <label class="mw-ui-label"><?php _e('Confirmation Email Sender'); ?></label> 
-                </td>
-                <td>
-                    <?php if (!empty($senders)): ?>  
-                        <select name="confirmation_sender_account_id" class="mw-ui-field mw-ui-field-full-width">
-                            <?php foreach ($senders as $sender) : ?>
-                                <option <?php if ($list['confirmation_sender_account_id'] == $sender['id']): ?>selected="selected"<?php endif; ?> value="<?php echo $sender['id']; ?>"><?php echo $sender['name']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    <?php else: ?>
-                        <b style="color:#b93636;">First you need to add senders.</b>
-                    <?php endif; ?>
-                    <div class="js-field-message"></div>
-                </td>
-            </tr>
-
-        </table>
+                <?php else: ?>
+                    <div style="color:#b93636;">First you need to add senders.</div>
+                <?php endif; ?>
+                <div class="js-field-message"></div>
+            </div>
+        </div>
     <?php endif; ?>
 
-
-
-    <button type="submit" class="mw-ui-btn"><?php _e('Save'); ?></button>
-    <?php if (isset($list['id'])): ?>
-        <a class="mw-ui-btn mw-ui-btn-icon" href="javascript:;" onclick="delete_list('<?php print $list['id']; ?>')"> <span class="mw-icon-bin"></span> </a>
-        <input type="hidden" value="<?php echo $list['id']; ?>" name="id" />
-    <?php endif; ?>
+    <div class="d-flex justify-content-between">
+        <div>
+            <?php if (isset($list['id'])): ?>
+                <a class="mw-ui-btn mw-ui-btn-icon" href="javascript:;" onclick="delete_list('<?php print $list['id']; ?>')"> <span class="mw-icon-bin"></span> </a>
+                <input type="hidden" value="<?php echo $list['id']; ?>" name="id" />
+            <?php endif; ?>
+        </div>
+        <button type="submit" class="btn btn-success btn-sm"><?php _e('Save'); ?></button>
+    </div>
 </form>

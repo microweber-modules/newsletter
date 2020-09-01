@@ -20,6 +20,11 @@ if (isset($params["live_edit"]) and $params["live_edit"]) {
     </div>
 
     <div class="card-body pt-3">
+        <style>
+            .table td{
+                vertical-align: middle;
+            }
+        </style>
         <?php
         $mod_action = '';
         $load_mod_action = false;

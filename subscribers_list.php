@@ -6,20 +6,36 @@ $subscribers_params['order_by'] = "created_at desc";
 $subscribers = newsletter_get_subscribers($subscribers_params);
 ?>
 <?php if ($subscribers): ?>
-    <div class="form-group">
-        <label class="control-label">List of subscribers</label>
+
+    <div class="d-flex justify-content-between">
+        <div class="form-group">
+            <label class="control-label">List of subscribers</label>
+        </div>
+
+        <div>
+            <?php
+            $subscribers_params = array();
+            $subscribers_params['no_limit'] = true;
+            $subscribers_params['order_by'] = "created_at desc";
+            $subscribers = newsletter_get_subscribers($subscribers_params);
+            ?>
+            <?php if (is_array($subscribers)) : ?>
+                <strong><?php print _e('Total'); ?>:</strong>
+                <span><?php echo count($subscribers); ?> subscribers</span>
+            <?php endif; ?>
+        </div>
     </div>
 
     <div class="table-responsive">
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col" width="40px"><?php _e('#'); ?></th>
-                    <th scope="col"><?php _e('Name'); ?></th>
-                    <th scope="col"><?php _e('E-mail'); ?></th>
-                    <th scope="col"><?php _e('Subscribed at'); ?></th>
-                    <th scope="col"><?php _e('Subscribed'); ?></th>
-                    <th scope="col" width="200px">&nbsp;</th>
+                    <th class="font-weight-bold" scope="col" width="40px"><?php _e('ID'); ?></th>
+                    <th class="font-weight-bold" scope="col"><?php _e('Name'); ?></th>
+                    <th class="font-weight-bold" scope="col"><?php _e('E-mail'); ?></th>
+                    <th class="font-weight-bold" scope="col"><?php _e('Subscribed at'); ?></th>
+                    <th class="font-weight-bold" scope="col"><?php _e('Subscribed'); ?></th>
+                    <th class="font-weight-bold text-center" scope="col" width="200px"><?php _e('Action'); ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -38,9 +54,9 @@ $subscribers = newsletter_get_subscribers($subscribers_params);
                             }
                             ?>
                         </td>
-                        <td>
-                            <button class="mw-ui-btn mw-ui-btn-info mw-ui-btn-medium" onclick="edit_subscriber('<?php print $subscriber['id']; ?>')"><?php _e('Edit'); ?></button>
-                            <a class="mw-ui-btn mw-ui-btn-icon mw-ui-btn-important mw-ui-btn-outline mw-ui-btn-medium" href="javascript:;" onclick="delete_subscriber('<?php print $subscriber['id']; ?>')"> <span class="mw-icon-bin"></span> </a>
+                        <td class="text-center">
+                            <button class="btn btn-outline-primary btn-sm" onclick="edit_subscriber('<?php print $subscriber['id']; ?>')"><?php _e('Edit'); ?></button>
+                            <a class="btn btn-link btn-sm text-danger" href="javascript:;" onclick="delete_subscriber('<?php print $subscriber['id']; ?>')"><i class="mdi mdi-trash-can-outline"></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

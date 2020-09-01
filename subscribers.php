@@ -29,19 +29,6 @@
     }
 </script>
 
-<a href="javascript:;" class="btn btn-primary" onclick="edit_subscriber();"><i class="mdi mdi-plus"></i> <?php _e('Add new subscriber'); ?></a>
-
-<div>
-    <?php
-    $subscribers_params = array();
-    $subscribers_params['no_limit'] = true;
-    $subscribers_params['order_by'] = "created_at desc";
-    $subscribers = newsletter_get_subscribers($subscribers_params);
-    ?>
-    <?php if (is_array($subscribers)) : ?>
-        <strong><?php print _e('Total'); ?>:</strong>
-        <span><?php echo count($subscribers); ?> subscribers</span>
-    <?php endif; ?>
-</div>
+<a href="javascript:;" class="btn btn-primary mb-3" onclick="edit_subscriber();"><i class="mdi mdi-plus"></i> <?php _e('Add new subscriber'); ?></a>
 
 <module type="newsletter/subscribers_list"/>

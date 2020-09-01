@@ -3,14 +3,18 @@
 $senders = newsletter_get_senders();
 ?>
 <?php if ($senders): ?>
+    <div class="form-group">
+        <label class="control-label">List of senders</label>
+    </div>
+
     <div class="table-responsive">
-        <table class="table table-striped">
+        <table class="table">
             <thead>
                 <tr>
                     <th class="font-weight-bold"><?php _e('Name'); ?></th>
                     <th class="font-weight-bold"><?php _e('From'); ?></th>
-                    <th class="font-weight-bold"><?php _e('Email'); ?></th>
-                    <th class="font-weight-bold"><?php _e('Reply'); ?></th>
+                    <!--<th class="font-weight-bold"><?php _e('Email'); ?></th>-->
+                    <!--<th class="font-weight-bold"><?php _e('Reply'); ?></th>-->
                     <th class="font-weight-bold"><?php _e('Created at'); ?></th>
                     <th class="font-weight-bold"><?php _e('Active'); ?></th>
                     <th class="font-weight-bold text-center" width="200px"><?php _e('Action'); ?></th>
@@ -21,8 +25,8 @@ $senders = newsletter_get_senders();
                     <tr>
                         <td><?php print $sender['name']; ?></td>
                         <td><?php print $sender['from_name']; ?></td>
-                        <td><?php print $sender['from_email']; ?></td>
-                        <td><?php print $sender['reply_email']; ?></td>
+                        <!--<td><?php print $sender['from_email']; ?></td>-->
+                        <!--<td><?php print $sender['reply_email']; ?></td>-->
                         <td><?php print $sender['created_at']; ?></td>
                         <td><?php if ($sender['is_active']): ?><?php _e('Yes'); ?><?php else: ?><?php _e('No'); ?><?php endif; ?></td>
                         <td class="text-center">

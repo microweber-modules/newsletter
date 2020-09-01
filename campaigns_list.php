@@ -4,7 +4,7 @@ $campaigns = newsletter_get_campaigns();
 ?>
 <?php if ($campaigns): ?>
     <div class="table-responsive">
-        <table class="table table-striped">
+        <table class="table">
             <thead>
                 <tr>
                     <th class="font-weight-bold"><?php _e('Name'); ?></th>
