@@ -38,7 +38,17 @@ $subscribers = newsletter_get_subscribers($subscribers_params);
                     <th class="font-weight-bold text-center" scope="col" width="200px"><?php _e('Action'); ?></th>
                 </tr>
             </thead>
-            <tbody>
+            <tfoot>
+                <tr>
+                    <th class="font-weight-bold" scope="col" width="40px"><?php _e('ID'); ?></th>
+                    <th class="font-weight-bold" scope="col"><?php _e('Name'); ?></th>
+                    <th class="font-weight-bold" scope="col"><?php _e('E-mail'); ?></th>
+                    <th class="font-weight-bold" scope="col"><?php _e('Subscribed at'); ?></th>
+                    <th class="font-weight-bold" scope="col"><?php _e('Subscribed'); ?></th>
+                    <th class="font-weight-bold text-center" scope="col" width="200px"><?php _e('Action'); ?></th>
+                </tr>
+            </tfoot>
+            <tbody class="small">
                 <?php foreach ($subscribers as $key => $subscriber): ?>
                     <tr>
                         <td data-label="<?php _e('#'); ?>"><?php print $key + 1; ?></td>

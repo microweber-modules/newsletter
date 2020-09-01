@@ -17,14 +17,26 @@ $campaigns = newsletter_get_campaigns();
                     <th class="font-weight-bold text-center" width="200px">&nbsp;</th>
                 </tr>
             </thead>
-            <tbody>
+            <tfoot>
+                <tr>
+                    <th class="font-weight-bold"><?php _e('Name'); ?></th>
+                    <th class="font-weight-bold"><?php _e('Subject'); ?></th>
+                    <th class="font-weight-bold"><?php _e('From'); ?></th>
+                    <!--<th class="font-weight-bold"><?php _e('Email'); ?></th>  -->
+                    <th class="font-weight-bold"><?php _e('Created at'); ?></th>
+                    <th class="font-weight-bold"><?php _e('List'); ?></th>
+                    <th class="font-weight-bold"><?php _e('Done'); ?></th>
+                    <th class="font-weight-bold text-center" width="200px">&nbsp;</th>
+                </tr>
+            </tfoot>
+            <tbody class="small">
                 <?php foreach ($campaigns as $campaign): ?>
                     <tr>
                         <td><?php print $campaign['name']; ?></td>
                         <td><?php print $campaign['subject']; ?></td>
                         <td><?php print $campaign['from_name']; ?></td>
                         <!--
-                            <td><?php // print $campaign['from_email'];   ?></td>-->
+                            <td><?php // print $campaign['from_email'];     ?></td>-->
                         <td><?php print $campaign['created_at']; ?></td>
                         <td><?php print $campaign['list_name']; ?></td>
                         <td>

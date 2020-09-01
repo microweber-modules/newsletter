@@ -216,7 +216,7 @@ $senders = newsletter_get_senders($senders_params);
     <div class="d-flex justify-content-between">
         <div>
             <?php if (isset($list['id'])): ?>
-                <a class="mw-ui-btn mw-ui-btn-icon" href="javascript:;" onclick="delete_list('<?php print $list['id']; ?>')"> <span class="mw-icon-bin"></span> </a>
+                <a class="btn btn-outline-danger btn-sm" href="javascript:;" onclick="delete_list('<?php print $list['id']; ?>')">Delete</a>
                 <input type="hidden" value="<?php echo $list['id']; ?>" name="id" />
             <?php endif; ?>
         </div>

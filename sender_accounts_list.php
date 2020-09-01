@@ -20,7 +20,18 @@ $senders = newsletter_get_senders();
                     <th class="font-weight-bold text-center" width="200px"><?php _e('Action'); ?></th>
                 </tr>
             </thead>
-            <tbody>
+            <tfoot>
+                <tr>
+                    <th class="font-weight-bold"><?php _e('Name'); ?></th>
+                    <th class="font-weight-bold"><?php _e('From'); ?></th>
+                    <!--<th class="font-weight-bold"><?php _e('Email'); ?></th>-->
+                    <!--<th class="font-weight-bold"><?php _e('Reply'); ?></th>-->
+                    <th class="font-weight-bold"><?php _e('Created at'); ?></th>
+                    <th class="font-weight-bold"><?php _e('Active'); ?></th>
+                    <th class="font-weight-bold text-center" width="200px"><?php _e('Action'); ?></th>
+                </tr>
+            </tfoot>
+            <tbody class="small">
                 <?php foreach ($senders as $sender): ?>
                     <tr>
                         <td><?php print $sender['name']; ?></td>

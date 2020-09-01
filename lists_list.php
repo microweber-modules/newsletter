@@ -29,7 +29,14 @@ if ($lists) {
                     <th class="font-weight-bold" width="140px"><?php _e('Action'); ?></th>
                 </tr>
             </thead>
-            <tbody>
+            <tfoot>
+                <tr>
+                    <th class="font-weight-bold"><?php _e('Name'); ?></th>
+                    <th class="font-weight-bold"><?php _e('Subscribers'); ?></th>
+                    <th class="font-weight-bold" width="140px"><?php _e('Action'); ?></th>
+                </tr>
+            </tfoot>
+            <tbody class="small">
                 <?php foreach ($all_lists as $list): ?>
                     <tr>
                         <td><?php print $list['name']; ?></td>

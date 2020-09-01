@@ -11,7 +11,7 @@ $templates = newsletter_get_templates($templates_params);
     </div>
 
     <div class="table-responsive">
-        <table class="table table-striped">
+        <table class="table">
             <thead>
                 <tr>
                     <th class="font-weight-bold"><?php _e('Title'); ?></th>
@@ -19,7 +19,14 @@ $templates = newsletter_get_templates($templates_params);
                     <th class="font-weight-bold text-center" width="140px"><?php _e('Action'); ?></th>
                 </tr>
             </thead>
-            <tbody>
+            <tfoot>
+                <tr>
+                    <th class="font-weight-bold"><?php _e('Title'); ?></th>
+                    <th class="font-weight-bold"><?php _e('Date'); ?></th>
+                    <th class="font-weight-bold text-center" width="140px"><?php _e('Action'); ?></th>
+                </tr>
+            </tfoot>
+            <tbody class="small">
                 <?php foreach ($templates as $template): ?>
                     <tr>
                         <td><?php print $template['title']; ?></td>
