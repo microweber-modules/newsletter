@@ -65,8 +65,9 @@ if (isset($params["live_edit"]) and $params["live_edit"]) {
                 </div>
 
                 <div class="tab-pane fade" id="settings">
-                    <module type="newsletter/privacy_settings" for_module_id="<?php print $params['id'] ?>"/>
-                    <hr class="thin"/>
+                    <module type="newsletter/privacy_settings" for_module_id="<?php print $params['id'] ?>" data-no-hr="true"/>
+
+
                     <module type="newsletter/settings" for_module_id="<?php print $params['id'] ?>"/>
                 </div>
             </div>

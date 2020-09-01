@@ -1,7 +1,9 @@
 <?php must_have_access(); ?>
 <div class="card bg-none style-1 mb-0 card-settings">
     <div class="card-body pt-3">
-        <hr class="thin mt-0 mb-5"/>
+        <?php if (!isset($params['data-no-hr'])) : ?>
+            <hr class="thin mt-0 mb-5"/>
+        <?php endif; ?>
 
         <div class="row">
             <div class="col-md-3">

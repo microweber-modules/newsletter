@@ -11,7 +11,7 @@ $templates = newsletter_get_templates($templates_params);
     </div>
 
     <div class="table-responsive">
-        <table class="table">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th class="font-weight-bold"><?php _e('Title'); ?></th>

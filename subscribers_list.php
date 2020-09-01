@@ -27,7 +27,7 @@ $subscribers = newsletter_get_subscribers($subscribers_params);
     </div>
 
     <div class="table-responsive">
-        <table class="table">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th class="font-weight-bold" scope="col" width="40px"><?php _e('ID'); ?></th>
