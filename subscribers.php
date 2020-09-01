@@ -1,7 +1,6 @@
 <?php must_have_access(); ?>
 
 <script>
-
     function edit_subscriber(id = false) {
         var data = {};
         data.id = id;
@@ -30,13 +29,9 @@
     }
 </script>
 
-<a href="javascript:;" class="mw-ui-btn mw-ui-btn-medium mw-ui-btn-notification mw-ui-btn-rounded" onclick="edit_subscriber();" style="">
-    <i class="fas fa-plus-circle"></i> &nbsp;
-    <span><?php _e('Add new subscriber'); ?></span>
-</a>
+<a href="javascript:;" class="btn btn-primary" onclick="edit_subscriber();"><i class="mdi mdi-plus"></i> <?php _e('Add new subscriber'); ?></a>
 
-
-<div class="pull-right">
+<div>
     <?php
     $subscribers_params = array();
     $subscribers_params['no_limit'] = true;
@@ -48,8 +43,5 @@
         <span><?php echo count($subscribers); ?> subscribers</span>
     <?php endif; ?>
 </div>
-
-<br/>
-<br/>
 
 <module type="newsletter/subscribers_list"/>

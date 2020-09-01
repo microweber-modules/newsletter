@@ -1,14 +1,11 @@
 <style>
-    .mw-ui-field-full-width {
-        width: 100%;
-    }
-
     .js-danger-text {
         padding-top: 5px;
         color: #c21f1f;
     }
 </style>
 
+<script>mw.require('editor.js')</script>
 
 <script type="text/javascript">
     function edit_iframe_template(template_id) {
@@ -35,18 +32,42 @@
             $('.mw-iframe-editor').remove();
         }
         editorLaunced = true;
-        var editorTemplate = mw.editor({
-            element: mwd.getElementById('js-editor-template'),
-            hideControls: ['format', 'fontsize', 'justifyfull']
+        var editorTemplate = new mw.Editor({
+            selector: '#js-editor-template',
+            mode: 'div',
+            smallEditor: false,
+            minHeight: 250,
+            maxHeight: '70vh',
+            controls: [
+                [
+                    'undoRedo', '|', 'image', '|',
+                    {
+                        group: {
+                            icon: 'mdi mdi-format-bold',
+                            controls: ['bold', 'italic', 'underline', 'strikeThrough']
+                        }
+                    },
+                    '|',
+                    {
+                        group: {
+                            icon: 'mdi mdi-format-align-left',
+                            controls: ['align']
+                        }
+                    },
+                    '|', 'format',
+                    {
+                        group: {
+                            icon: 'mdi mdi-format-list-bulleted-square',
+                            controls: ['ul', 'ol']
+                        }
+                    },
+                    '|', 'link', 'unlink', 'wordPaste', 'table'
+                ],
+            ]
         });
     };
 
-    /*$(editorTemplate).on('change', function () {
-        this.value;
-    });*/
-
     $(document).ready(function () {
-
         $(".js-edit-template-form").submit(function (e) {
 
             e.preventDefault(e);
@@ -82,31 +103,27 @@
 </script>
 
 
+
 <form class="js-edit-template-form">
-    <div class="mw-ui-field-holder">
-        <label class="mw-ui-label"><?php _e('Template title'); ?></label>
-        <input name="title" type="text" value="" class="mw-ui-field mw-ui-field-full-width js-validation js-edit-template-title"/>
+    <div class="form-group">
+        <label class="control-label"><?php _e('Template title'); ?></label>
+        <input name="title" type="text" value="" class="form-control js-validation js-edit-template-title"/>
         <div class="js-field-message"></div>
     </div>
-    <div class="mw-ui-field-holder">
-        <label class="mw-ui-label"><?php _e('Template design'); ?></label>
-        <br/>
-        Variables:
-        <br/>
-        {first_name} , {Last_name} , {email} , {unsubscribe} {site_url}
-        <br/>
 
-        <button onclick="edit_iframe_template($('.js-edit-template-id').val())" type="button" class="mw-ui-btn mw-ui-btn-info" style="float:right;"><?php _e('Use Template Generator'); ?></button>
+    <div class="form-group">
+        <label class="control-label"><?php _e('Template design'); ?></label>
+        <small class="text-muted d-flex justify-content-between align-items-center mb-2"><span>Variables: {first_name} , {Last_name} , {email} , {unsubscribe} {site_url}</span> <button onclick="edit_iframe_template($('.js-edit-template-id').val())" type="button" class="btn btn-outline-primary btn-sm"><?php _e('Template Generator'); ?></button></small>
 
         <textarea id="js-editor-template" name="text" class="js-edit-template-text" style="border:3px solid #cfcfcf; width:100%;height:500px;margin-top:5px;"></textarea>
 
         <div class="js-template-design"></div>
         <div class="js-field-message"></div>
     </div>
-    <br/>
-    <button type="submit" class="mw-ui-btn"><?php _e('Save'); ?></button>
 
-    <a class="mw-ui-btn mw-ui-btn-icon" href="javascript:;" onclick="delete_template($('.js-edit-template-id').val())"> <span class="mw-icon-bin"></span> </a>
-    <input type="hidden" value="0" class="js-edit-template-id" name="id"/>
-
+    <div class="d-flex justify-content-between align-items-center">
+        <a class="btn btn-outline-danger btn-sm" href="javascript:;" onclick="delete_template($('.js-edit-template-id').val())">Delete</a>
+        <input type="hidden" value="0" class="js-edit-template-id" name="id"/>
+        <button type="submit" class="btn btn-success btn-sm"><?php _e('Save'); ?></button>
+    </div>
 </form>

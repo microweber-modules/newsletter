@@ -1,6 +1,6 @@
 <?php must_have_access(); ?>
-<script>
 
+<script>
     function edit_sender(id = false) {
         var data = {};
         data.id = id;
@@ -27,18 +27,10 @@
             });
         }
 
-
         return false;
     }
 </script>
 
-<a href="javascript:;" class="mw-ui-btn mw-ui-btn-medium mw-ui-btn-notification mw-ui-btn-rounded" onclick="edit_sender(false);" style="">
-    <i class="fas fa-plus-circle"></i> &nbsp;
-    <span><?php _e('Add new sender'); ?></span>
-</a>
-
-<div class="mw-clear"></div>
-
-<br/>
+<a href="javascript:;" class="btn btn-primary mb-3" onclick="edit_sender(false);"><i class="mdi mdi-plus"></i> <?php _e('Add new sender'); ?></a>
 
 <module type="newsletter/sender_accounts_list"/>

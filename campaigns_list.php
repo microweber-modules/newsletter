@@ -4,59 +4,48 @@ $campaigns = newsletter_get_campaigns();
 ?>
 <?php if ($campaigns): ?>
     <div class="table-responsive">
-    <table width="100%" border="0" class="mw-ui-table" style="table-layout:fixed">
-        <thead>
-        <tr>
-            <th><?php _e('Name'); ?></th>
-            <th><?php _e('Subject'); ?></th>
-            <th><?php _e('From'); ?></th>
-            <!--<th><?php _e('Email'); ?></th>  -->
-            <th><?php _e('Created at'); ?></th>
-            <th><?php _e('List'); ?></th>
-            <th><?php _e('Done'); ?></th>
-            <th width="200px">&nbsp;</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($campaigns as $campaign): ?>
-            <tr>
-                <td>
-                    <?php print $campaign['name']; ?>
-                </td>
-                <td>
-                    <?php print $campaign['subject']; ?>
-                </td>
-                <td>
-                    <?php print $campaign['from_name']; ?>
-                </td>
-                <!--
-                    <td>
-                    <?php // print $campaign['from_email']; ?>
-                    </td>-->
-                <td>
-                    <?php print $campaign['created_at']; ?>
-                </td>
-                <td>
-                    <?php print $campaign['list_name']; ?>
-                </td>
-                <td>
-                    <?php
-                    if ($campaign['is_done']) {
-                        _e('Yes');
-                    } else {
-                        _e('No');
-                    }
-                    ?>
-                </td>
-                <td>
-                    <button class="mw-ui-btn" onclick="start_campaign('<?php print $campaign['id']; ?>')"><?php _e('Start'); ?></button>
-                    <button class="mw-ui-btn" onclick="edit_campaign('<?php print $campaign['id']; ?>')"><?php _e('Edit'); ?></button>
-                    <a class="mw-ui-btn mw-ui-btn-icon" href="javascript:;" onclick="delete_campaign('<?php print $campaign['id']; ?>')"> <span class="mw-icon-bin"></span> </a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
-    </div><?php else: ?>
-    <b>No Campaigns found.</b>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="font-weight-bold"><?php _e('Name'); ?></th>
+                    <th class="font-weight-bold"><?php _e('Subject'); ?></th>
+                    <th class="font-weight-bold"><?php _e('From'); ?></th>
+                    <!--<th class="font-weight-bold"><?php _e('Email'); ?></th>  -->
+                    <th class="font-weight-bold"><?php _e('Created at'); ?></th>
+                    <th class="font-weight-bold"><?php _e('List'); ?></th>
+                    <th class="font-weight-bold"><?php _e('Done'); ?></th>
+                    <th class="font-weight-bold text-center" width="200px">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($campaigns as $campaign): ?>
+                    <tr>
+                        <td><?php print $campaign['name']; ?></td>
+                        <td><?php print $campaign['subject']; ?></td>
+                        <td><?php print $campaign['from_name']; ?></td>
+                        <!--
+                            <td><?php // print $campaign['from_email'];   ?></td>-->
+                        <td><?php print $campaign['created_at']; ?></td>
+                        <td><?php print $campaign['list_name']; ?></td>
+                        <td>
+                            <?php if ($campaign['is_done']): ?>
+                                <?php _e('Yes'); ?>
+                            <?php else: ?>
+                                <?php _e('No'); ?>
+                            <?php endif; ?>
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-primary btn-sm" onclick="start_campaign('<?php print $campaign['id']; ?>')"><?php _e('Start'); ?></button>
+                            <button class="btn btn-outline-primary btn-sm" onclick="edit_campaign('<?php print $campaign['id']; ?>')"><?php _e('Edit'); ?></button>
+                            <a class="btn btn-link btn-sm text-danger" href="javascript:;" onclick="delete_campaign('<?php print $campaign['id']; ?>')"><i class="mdi mdi-trash-can-outline"></i></a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+<?php else: ?>
+    <div class="icon-title justify-content-center">
+        <i class="mdi mdi-email-check-outline"></i> <h5 class="mb-0"><?php _e("No campaigns found"); ?></h5>
+    </div>
 <?php endif; ?>
