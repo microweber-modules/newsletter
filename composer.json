@@ -10,6 +10,9 @@
       "email": "bobi@microweber.com"
     }
   ],
+  "require": {
+    "geoip2/geoip2": "dev-master"
+  },
   "keywords": [
     "newsletter"
   ],
