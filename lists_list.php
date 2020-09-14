@@ -21,7 +21,7 @@ if ($lists) {
     </div>
 
     <div class="table-responsive">
-        <table class="table table-hover">
+        <table class="table table-hover table-striped">
             <thead>
                 <tr>
                     <th class="font-weight-bold"><?php _e('Name'); ?></th>
