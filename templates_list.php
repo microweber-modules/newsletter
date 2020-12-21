@@ -7,7 +7,6 @@ $templates = newsletter_get_templates($templates_params);
 ?>
 <script>
     function edit_template(id = false) {
-
         var data = {};
         data.id = id;
 
@@ -24,7 +23,7 @@ $templates = newsletter_get_templates($templates_params);
                     $('.js-edit-template-title').val(result.title);
                     $('.js-edit-template-text').val(result.text);
 
-                    initEditor();
+                    initEditor(result.text);
                 }
             });
         } else {
@@ -32,7 +31,7 @@ $templates = newsletter_get_templates($templates_params);
             $('.js-edit-template-title').val('');
             $('.js-edit-template-text').val('');
 
-            initEditor();
+            initEditor('');
         }
 
         $('.js-templates-list-wrapper').slideUp();

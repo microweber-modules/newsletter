@@ -7,18 +7,18 @@
 
 <script>mw.require('editor.js')</script>
 
-<script type="text/javascript">
+<script>
     function edit_iframe_template(template_id) {
 
         var module_type = 'newsletter';
         var module_id = 'edit_template_iframe';
 
         var src = mw.settings.site_url + 'api/module?template_id=' + template_id + '&id=' + module_id + '&type=' + module_type + '&autosize=true';
-        var modal = mw.tools.modal.frame({
+        var modal = mw.dialogIframe({
             url: src,
             width: 1500,
             height: 1500,
-            name: 'mw-module-settings-editor-front',
+            id: 'mw-module-settings-editor-front',
             title: 'Settings',
             template: 'default',
             center: false,
@@ -27,12 +27,13 @@
         });
     }
 
-    initEditor = function () {
+    initEditor = function (val) {
         if (window.editorLaunced) {
-            $('.mw-iframe-editor').remove();
+            editorLaunced.setContent(val, true);
+            return;
         }
-        editorLaunced = true;
-        var editorTemplate = new mw.Editor({
+
+        window.editorLaunced = new mw.Editor({
             selector: '#js-editor-template',
             mode: 'div',
             smallEditor: false,
@@ -65,6 +66,7 @@
                 ],
             ]
         });
+        initEditor(val)
     };
 
     $(document).ready(function () {
@@ -80,17 +82,11 @@
                 type: 'POST',
                 data: data,
                 success: function (result) {
-
                     mw.notification.success('<?php _ejs('Template saved'); ?>');
-
-                    // Reload the modules
-                    mw.reload_module('newsletter/templates_list')
+                    mw.reload_module('newsletter/templates_list');
                     mw.reload_module_parent('newsletter');
-
                     $(".js-edit-template-form")[0].reset();
-
                     list_templates();
-
                 },
                 error: function (e) {
                     alert('Error processing your request: ' + e.responseText);
@@ -115,7 +111,7 @@
         <label class="control-label"><?php _e('Template design'); ?></label>
         <small class="text-muted d-flex justify-content-between align-items-center mb-2"><span>Variables: {first_name} , {Last_name} , {email} , {unsubscribe} {site_url}</span> <button onclick="edit_iframe_template($('.js-edit-template-id').val())" type="button" class="btn btn-outline-primary"><?php _e('Template Generator'); ?></button></small>
 
-        <textarea id="js-editor-template" name="text" class="js-edit-template-text" style="border:3px solid #cfcfcf; width:100%;height:500px;margin-top:5px;"></textarea>
+        <textarea id="js-editor-template" name="text" class="js-edit-template-text"></textarea>
 
         <div class="js-template-design"></div>
         <div class="js-field-message"></div>

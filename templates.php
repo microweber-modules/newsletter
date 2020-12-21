@@ -25,7 +25,7 @@
                     $('.js-edit-template-title').val(result.title);
                     $('.js-edit-template-text').val(result.text);
 
-                    initEditor();
+                    initEditor(result.text);
                 }
             });
         } else {
@@ -33,7 +33,7 @@
             $('.js-edit-template-title').val('');
             $('.js-edit-template-text').val('');
 
-            initEditor();
+            initEditor('');
         }
 
         $('.js-templates-list-wrapper').slideUp();
