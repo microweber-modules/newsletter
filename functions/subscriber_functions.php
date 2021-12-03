@@ -16,18 +16,20 @@ function newsletter_subscribe($params)
         $mod_id = $params['mod_id'];
     }
 
+    $request = request();
+
     $name = '';
-   	if (!empty(Input::get('first_name'))) {
-   		$name = Input::get('first_name');
+   	if (!empty($request->get('first_name'))) {
+   		$name = $request->get('first_name');
     }
 
-    if (!empty(Input::get('name'))) {
-    	$name = Input::get('name');
+    if (!empty($request->get('name'))) {
+    	$name = $request->get('name');
     }
 
     $last_name = '';
-   	if (!empty(Input::get('last_name'))) {
-   		$last_name = Input::get('last_name');
+   	if (!empty($request->get('last_name'))) {
+   		$last_name = $request->get('last_name');
     }
 
     $adm = mw()->user_manager->is_admin();
@@ -54,13 +56,13 @@ function newsletter_subscribe($params)
         'email' => 'required|email|unique:newsletter_subscribers'
     ];
 
-    $input = Input::only('name', 'email', 'list_id', 'terms', 'captcha');
+    $input = $request->only('name', 'email', 'list_id', 'terms', 'captcha');
     $messages = array(
         'unique' => 'This email is already subscribed!'
     );
 
 
-    $list_id = Input::get('list_id');
+    $list_id = $request->get('list_id');
     if (!$list_id) {
         $list_id = get_option('list_id', $mod_id);
     }
@@ -153,7 +155,7 @@ function newsletter_subscribe($params)
     $confirmation_code = str_random(30);
 
     $subscriber_data = [
-    	'email' => Input::get('email'),
+    	'email' => $request->get('email'),
     	'name' => $name,
     	'last_name' => $last_name,
     	'list_id' => $list_id,
