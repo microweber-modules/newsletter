@@ -163,10 +163,9 @@ function newsletter_subscribe($params)
     ];
 
     newsletter_save_subscriber($subscriber_data);
-    $msg = 'Thank you for subscribing!';
 
     $resp = array(
-        'success' => $msg
+        'success' => _e('Thank you for subscribing!', true),
     );
 
     if ($redir) {

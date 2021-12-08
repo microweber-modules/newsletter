@@ -6,10 +6,10 @@ $config['ui'] = true;
 $config['ui_admin'] = true;
 $config['categories'] = 'marketing';
 $config['position'] = 55;
-$config['version'] = 1.4;
+$config['version'] = 1.5;
 
 $config['tables'] = array (
-		
+
 	'newsletter_subscribers' => array (
 			'id' => 'integer',
 			'name' => 'text',
@@ -38,7 +38,7 @@ $config['tables'] = array (
 			'created_at' => 'dateTime',
 			'is_done' => 'integer'
 	),
-		
+
 	'newsletter_sender_accounts' => array(
 		'id' => 'integer',
 		'name' => 'text',
@@ -47,35 +47,35 @@ $config['tables'] = array (
 		'reply_email' => 'text',
 		'created_at' => 'dateTime',
 		'account_type' => 'text',
-			
+
 		// Smtp settings
 		'smtp_username' => 'text',
 		'smtp_password' => 'text',
 		'smtp_host' => 'text',
 		'smtp_port' => 'text',
-		
+
 		// Mailchimp settings
 		'mailchimp_secret' => 'text',
-			
+
 		// Mailgun settings
 		'mailgun_domain' => 'text',
 		'mailgun_secret' => 'text',
-			
+
 		// Mandrill settings
 		'mandrill_secret' => 'text',
-			
+
 		// Sparkpost settings
 		'sparkpost_secret' => 'text',
-		
+
 		// Amazon ses settings
 		'amazon_ses_key' => 'text',
 		'amazon_ses_secret' => 'text',
 		'amazon_ses_region' => 'text', // e.g. us-eas
-			
+
 		'account_pass' => 'text',
 		'is_active' => 'integer'
 	),
-	
+
 	'newsletter_lists' => array(
 		'id' => 'integer',
 		'name' => 'text',
@@ -87,14 +87,14 @@ $config['tables'] = array (
 		'confirmation_sender_account_id' => 'integer',
 		'created_at' => 'dateTime'
 	),
-		
+
 	'newsletter_subscribers_lists' => array (
 			'id' => 'integer',
 			'subscriber_id' => 'integer',
 			'list_id' => 'integer',
 			'created_at' => 'dateTime'
 	),
-	
+
 	'newsletter_templates' => array (
 			'id' => 'integer',
 			'title' => 'text',
