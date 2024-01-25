@@ -4,7 +4,15 @@
     function edit_sender(id = false) {
         var data = {};
         data.id = id;
-        edit_campaign_modal = mw.tools.open_module_modal('newsletter/edit_sender', data, {overlay: true, skin: 'simple'});
+        let modal_title = 'New sender';
+        if (id > 0) {
+            modal_title = 'Edit sender';
+        }
+        edit_campaign_modal = mw.tools.open_module_modal('newsletter/edit_sender', data, {
+            overlay: true,
+            skin: 'simple',
+            title: modal_title
+        });
     }
 
     function delete_sender(id) {
@@ -31,6 +39,9 @@
     }
 </script>
 
-<a href="javascript:;" class="btn btn-primary mb-3" onclick="edit_sender(false);"><i class="mdi mdi-plus"></i> <?php _e('Add new sender'); ?></a>
 
-<module type="newsletter/sender_accounts_list"/>
+<div class="card mt-2">
+    <div class="card-body">
+        <module type="newsletter/sender_accounts_list"/>
+    </div>
+</div>
